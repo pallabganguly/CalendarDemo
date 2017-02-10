@@ -1,5 +1,6 @@
 package kgecproject.practice.demo.calendardemo;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -14,18 +15,19 @@ import android.widget.Toast;
  * Created by pallab on 8/2/17.
  */
 
-public class DateCal extends Main {
+public class DateCal extends Estimate {
 
     CalendarView calendar;
     TextView textView;
     Spinner mySpinner1;
-    String options [] = {"Show Expenses", "Edit Expenses"};
+    String options [] = {"Show Expenses", "Edit Expenses", "Revise Estimate"};
     String dateString = "";
     int dateArray[] = new int[3];
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_main);
         Intent intent = getIntent();
+
         calendar = (CalendarView)findViewById(R.id.calendarView1);
         textView = (TextView)findViewById(R.id.textView1);
 
@@ -66,6 +68,10 @@ public class DateCal extends Main {
                     startActivity(nextScreen);
                 }
                 // myMessage1("Selected food is - " + options[i]);
+                if(i == 2) {
+                    Intent estimateScreen = new Intent(getApplicationContext(), Estimate.class);
+                    startActivity(estimateScreen);
+                }
             }
 
             @Override

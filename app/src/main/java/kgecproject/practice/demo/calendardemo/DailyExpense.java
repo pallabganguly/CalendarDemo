@@ -11,16 +11,17 @@ import android.widget.Toast;
  * Created by pallab on 9/2/17.
  */
 
-public class DailyExpense extends Main{
+public class DailyExpense extends Estimate{
 
     EditText expense_entry;
     int category = 0;
+    String dateData;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.date_expense);
         expense_entry=(EditText) findViewById(R.id.editText);
         Intent intent = getIntent();
-        String dateData = intent.getStringExtra("passarg");
+        dateData = intent.getStringExtra("passarg");
 
     }
 
@@ -51,47 +52,40 @@ public class DailyExpense extends Main{
                 if(status)
                 {
                     category= 1;
-                    myMessage("3 selected");
 
+                    int value = Integer.parseInt(expense_entry.getText().toString());
+                    long id = dbref.InsertRecord(dateData, value, 0, 0, 0);
 
-                }
-                else
-                    myMessage("not selected");
-                break;
+                } break;
+
             case R.id.radioButton5: // transportation
                 if(status)
                 {
-
-                    // StringBuffer str= new StringBuffer(expense_entry.getText().toString());
-
-                    // str= str.append("...4");
-
                     category=2;
 
-                    myMessage("4 selected");
-                }break;
+                    int value = Integer.parseInt(expense_entry.getText().toString());
+                    long id = dbref.InsertRecord(dateData, 0, value, 0, 0);
+                } break;
 
             case R.id.radioButton6 : // entertainment
                 if(status)
                 {
-
                     category=3;
-                    myMessage("5 selected");
-                }
-                break;
+
+                    int value = Integer.parseInt(expense_entry.getText().toString());
+                    long id = dbref.InsertRecord(dateData, 0, 0, value, 0);
+                } break;
 
             case R.id.radioButton7 : // food
                 if(status)
                 {
-
                     category=4;
-                    myMessage("6 selected");
-                }
-                break;
+
+                    int value = Integer.parseInt(expense_entry.getText().toString());
+                    long id = dbref.InsertRecord(dateData, 0, 0, 0, value);
+                } break; // We were on a break!!!
 
         }
-
-
     }
 
 

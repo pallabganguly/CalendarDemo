@@ -8,7 +8,7 @@
     <EditText
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
+        android:inputType="number"
         android:hint="Expense Entry"
         android:ems="10"
         android:id="@+id/editText"
@@ -22,7 +22,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:text="CANCEL"
+            android:text="BACK"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/cancel"
@@ -54,18 +54,18 @@
             android:layout_height="wrap_content"
             android:text="Food"
             android:onClick="image1"
-            android:id="@+id/imageButton3"
+            android:id="@+id/radioButton7"
             android:drawableLeft="@drawable/hamburger96"
 
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="100dp" />
+            android:layout_marginLeft="80dp" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Education"
             android:onClick="image1"
-            android:id="@+id/imageButton6"
+            android:id="@+id/radioButton4"
             android:drawableLeft="@drawable/undercomputer96"
 
             android:layout_alignBaseline="@+id/imageButton5"
@@ -73,28 +73,28 @@
             android:layout_alignLeft="@+id/imageButton4"
             android:layout_alignStart="@+id/imageButton4"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="100dp" />
+            android:layout_marginLeft="80dp" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Transport"
             android:onClick="image1"
-            android:id="@+id/imageButton5"
+            android:id="@+id/radioButton5"
             android:drawableLeft="@drawable/trafficjam96"
 
             android:layout_below="@+id/imageButton3"
             android:layout_alignLeft="@+id/imageButton3"
             android:layout_alignStart="@+id/imageButton3"
             android:layout_marginTop="10dp"
-            android:layout_marginLeft="100dp" />
+            android:layout_marginLeft="80dp" />
 
         <RadioButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Entertainment"
             android:onClick="image1"
-            android:id="@+id/imageButton4"
+            android:id="@+id/radioButton6"
             android:drawableLeft="@drawable/rockmusic96"
 
 
@@ -102,7 +102,7 @@
             android:layout_alignBottom="@+id/imageButton3"
             android:layout_toRightOf="@+id/imageButton3"
             android:layout_toEndOf="@+id/imageButton3"
-            android:layout_marginLeft="100dp"
+            android:layout_marginLeft="80dp"
             android:layout_marginTop="10dp" />
 
     </RadioGroup>
