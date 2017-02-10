@@ -41,58 +41,58 @@ public class DailyExpense extends Main{
             myMessage("..4");
 
     }
-//    public  void image1(View view)
-//    {
-//        boolean status = ((RadioButton)view).isChecked();
-//
-//        switch (view.getId())
-//        {
-//            case R.id.imageButton3 :
-//                if(status)
-//                {
-//                    category= 1;
-//                    myMessage("3 selected");
-//
-//
-//                }
-//                else
-//                    myMessage("not selected");
-//                break;
-//            case R.id.imageButton4:
-//                if(status)
-//                {
-//
-//                    // StringBuffer str= new StringBuffer(expense_entry.getText().toString());
-//
-//                    // str= str.append("...4");
-//
-//                    category=2;
-//
-//                    myMessage("4 selected");
-//                }break;
-//
-//            case R.id.imageButton5 :
-//                if(status)
-//                {
-//
-//                    category=3;
-//                    myMessage("5 selected");
-//                }break;
-//
-//            case R.id.imageButton6 :
-//                if(status)
-//                {
-//
-//                    category=4;
-//                    myMessage("6 selected");
-//                }
-//
-//                break;
-//
-//        }
-//
-//
-//    }
+    public  void image1(View view)
+    {
+        boolean status = ((RadioButton)view).isChecked();
+
+        switch (view.getId())
+        {
+            case R.id.radioButton4 : //Education
+                if(status)
+                {
+                    category= 1;
+                    myMessage("3 selected");
+
+
+                }
+                else
+                    myMessage("not selected");
+                break;
+            case R.id.radioButton5: // transportation
+                if(status)
+                {
+
+                    // StringBuffer str= new StringBuffer(expense_entry.getText().toString());
+
+                    // str= str.append("...4");
+
+                    category=2;
+
+                    myMessage("4 selected");
+                }break;
+
+            case R.id.radioButton6 : // entertainment
+                if(status)
+                {
+
+                    category=3;
+                    myMessage("5 selected");
+                }
+                break;
+
+            case R.id.radioButton7 : // food
+                if(status)
+                {
+
+                    category=4;
+                    myMessage("6 selected");
+                }
+                break;
+
+        }
+
+
+    }
 
 
     public void myMessage(String str)

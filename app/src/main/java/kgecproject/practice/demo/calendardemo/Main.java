@@ -74,7 +74,7 @@ public class Main extends AppCompatActivity {
             Toast.makeText(getApplicationContext(), "Oops! Does\'nt seem right!", Toast.LENGTH_SHORT).show();
         } else {
             Toast.makeText(getApplicationContext(), "You\'re logged in!", Toast.LENGTH_SHORT).show();
-            Intent estimateScreen = new Intent(getApplicationContext(),Estimate.class);
+            Intent estimateScreen = new Intent(getApplicationContext(),DateCal.class);
             startActivity(estimateScreen);
         }
     }
