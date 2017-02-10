@@ -20,6 +20,7 @@ public class DateCal extends Main {
     TextView textView;
     Spinner mySpinner1;
     String options [] = {"Show Expenses", "Edit Expenses"};
+    String dateString = "";
     int dateArray[] = new int[3];
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,6 +41,10 @@ public class DateCal extends Main {
                 dateArray[0] = dayOfMonth;
                 dateArray[1] = month+1;
                 dateArray[2] = year;
+
+                StringBuffer buff = new StringBuffer();
+                buff.append(dayOfMonth+""+(month+1)+""+year+"\n");
+                dateString = buff.toString();
                 mySpinner1Initiate();
             }
         });
@@ -57,7 +62,7 @@ public class DateCal extends Main {
                     Toast.makeText(getApplicationContext(), "Hi :(", Toast.LENGTH_SHORT).show();
                 if(i == 1){
                     Intent nextScreen = new Intent(getApplicationContext(),DailyExpense.class);
-                    nextScreen.putExtra("passarg", dateArray);
+                    nextScreen.putExtra("passarg", dateString);
                     startActivity(nextScreen);
                 }
                 // myMessage1("Selected food is - " + options[i]);

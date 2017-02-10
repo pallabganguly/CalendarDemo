@@ -20,7 +20,7 @@ public class DailyExpense extends Main{
         setContentView(R.layout.daily_expense);
         expense_entry=(EditText) findViewById(R.id.editText);
         Intent intent = getIntent();
-        int dateData[] = intent.getIntArrayExtra("passarg");
+        String dateData = intent.getStringExtra("passarg");
 
     }
 
