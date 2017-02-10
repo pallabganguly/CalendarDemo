@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:weightSum="1">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Expense Entry"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:fadingEdge="horizontal|vertical" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:text="CANCEL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cancel"
+            android:layout_weight="1"
+            android:onClick="cancel"
+            android:layout_marginLeft="16dp" />
+
+        <Button
+            android:text="SAVE"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/save"
+            android:layout_weight="1"
+            android:onClick="save"
+            android:layout_marginRight="16dp" />
+    </LinearLayout>
+
+    <!--<RadioGroup-->
+    <!--android:layout_width="match_parent"-->
+    <!--android:layout_height="match_parent"-->
+    <!--android:id="@+id/image1">-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="140dp"
+        android:orientation="horizontal"
+
+        android:layout_weight="0.21">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/undercomputer96"
+
+                android:layout_weight="4"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:layout_margin="@dimen/activity_horizontal_margin" />
+            <!--<RadioButton-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Food"-->
+            <!--android:onClick="image1"-->
+            <!--android:id="@+id/imageButton3"/>-->
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+                <RadioButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Education"
+                    android:onClick="image1"
+                    android:id="@+id/radioButton4"
+                    android:textAlignment="center" />
+
+            </RelativeLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/steamenginee96"
+
+                android:layout_weight="4"
+                android:scaleType="fitCenter"
+                android:adjustViewBounds="true"
+                android:layout_margin="@dimen/activity_horizontal_margin" />
+            <!--<RadioButton-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:text="Education"-->
+            <!--android:onClick="image1"-->
+            <!--android:id="@+id/imageButton4"/>-->
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"><RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Transportation"
+                android:onClick="image1"
+                android:id="@+id/radioButton5"
+                android:textAlignment="center" /></RelativeLayout>
+        </LinearLayout>
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="176dp"
+        android:orientation="horizontal">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/housestark96"
+
+                    android:layout_weight="4"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:layout_margin="@dimen/activity_horizontal_margin" />
+
+
+                <!--<RadioButton-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Education"-->
+                <!--android:onClick="image1"-->
+                <!--android:id="@+id/imageButton5"/>-->
+
+                <RadioButton
+                    android:text="Entertainment"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:id="@+id/radioButton6"
+                    android:textAlignment="center" />
+                    <!--android:layout_alignLeft="@+id/imageView5"-->
+                    <!--android:layout_alignStart="@+id/imageView5"-->
+
+
+
+            </RelativeLayout>
+
+            <RadioButton
+                android:text="RadioButton"
+                android:layout_width="match_parent"
+                android:layout_height="42dp"
+                android:id="@+id/radioButton2" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:layout_weight="1">
+
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    app:srcCompat="@drawable/hamburger96"
+
+                    android:layout_weight="4"
+                    android:scaleType="fitCenter"
+                    android:adjustViewBounds="true"
+                    android:layout_margin="@dimen/activity_horizontal_margin" />
+
+
+                <!--<RadioButton-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Education"-->
+                <!--android:onClick="image1"-->
+                <!--android:id="@+id/imageButton6"/>-->
+                <RadioButton
+                    android:text="Food"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:id="@+id/radioButton7"
+                    android:textAlignment="center" />
+                    <!--android:layout_alignLeft="@id/imageView4"-->
+                    <!--android:layout_alignStart="@+id/imageView4"-->
+
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+
+        </RadioGroup></RelativeLayout>
+</LinearLayout>
