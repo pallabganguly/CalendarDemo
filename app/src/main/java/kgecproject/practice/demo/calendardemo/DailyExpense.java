@@ -17,7 +17,7 @@ public class DailyExpense extends Main{
     int category = 0;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.daily_expense);
+        setContentView(R.layout.date_expense);
         expense_entry=(EditText) findViewById(R.id.editText);
         Intent intent = getIntent();
         String dateData = intent.getStringExtra("passarg");

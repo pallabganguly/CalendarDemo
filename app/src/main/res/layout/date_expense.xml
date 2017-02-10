@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:hint="Expense Entry"
+        android:ems="10"
+        android:id="@+id/editText"
+        android:fadingEdge="horizontal|vertical"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Button
+            android:text="CANCEL"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/cancel"
+            android:layout_weight="1"
+            android:onClick="cancel"
+            android:layout_marginLeft="16dp" />
+
+        <Button
+            android:text="SAVE"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/save"
+            android:layout_weight="1"
+            android:onClick="save"
+            android:layout_marginRight="16dp" />
+    </LinearLayout>
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--<RadioGroup-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="match_parent">-->
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:onClick="image1"
+            android:id="@+id/imageButton3"
+            android:drawableLeft="@drawable/hamburger96"
+            android:layout_marginLeft="47dp"
+            android:layout_marginStart="47dp"
+            android:layout_marginTop="48dp"
+
+            />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:onClick="image1"
+            android:id="@+id/imageButton5"
+            android:drawableLeft="@drawable/trafficjam96"
+
+            android:layout_below="@+id/imageButton3"
+            android:layout_alignLeft="@+id/imageButton3"
+            android:layout_alignStart="@+id/imageButton3"
+            android:layout_marginTop="81dp" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:onClick="image1"
+            android:id="@+id/imageButton4"
+            android:drawableLeft="@drawable/rockmusic96"
+
+
+
+            android:layout_marginLeft="35dp"
+            android:layout_marginStart="35dp"
+            android:layout_alignBaseline="@+id/imageButton3"
+            android:layout_alignBottom="@+id/imageButton3"
+            android:layout_toRightOf="@+id/imageButton3"
+            android:layout_toEndOf="@+id/imageButton3" />
+
+        <RadioButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=""
+            android:onClick="image1"
+            android:id="@+id/imageButton6"
+            android:drawableLeft="@drawable/undercomputer96"
+
+            android:layout_alignBaseline="@+id/imageButton5"
+            android:layout_alignBottom="@+id/imageButton5"
+            android:layout_alignLeft="@+id/imageButton4"
+            android:layout_alignStart="@+id/imageButton4" />
+
+
+    </RelativeLayout>
+
+</LinearLayout>
