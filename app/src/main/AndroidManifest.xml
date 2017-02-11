@@ -30,6 +30,10 @@
         <activity android:name="kgecproject.practice.demo.calendardemo.DailyExpense">
             <!-- Added fourth activity: DailyExpense -->
         </activity>
+
+        <activity android:name="kgecproject.practice.demo.calendardemo.ShowExpenses">
+            <!-- Added fifth activity: ShowExpenses -->
+        </activity>
     </application>
 
 </manifest>

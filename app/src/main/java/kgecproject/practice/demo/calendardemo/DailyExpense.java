@@ -34,7 +34,7 @@ public class DailyExpense extends Estimate{
 
     public void save(View view)
     {
-        if(expense_entry.getText().toString() == null) {
+        if(expense_entry.getText().toString().isEmpty()) {
             myMessage("Enter some expenses");
         }
         else {

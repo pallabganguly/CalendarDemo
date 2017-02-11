@@ -28,7 +28,7 @@ public class DateCal extends Estimate {
     CalendarView calendar;
     TextView textView;
     Spinner mySpinner1;
-    String options [] = {"Show Expenses", "Edit Expenses", "Revise Estimate"};
+    String options [] = {"Edit Expenses", "Show Expenses", "Revise Estimate"};
     String dateString = "";
     int dateArray[] = new int[3];
     Point p;
@@ -52,9 +52,9 @@ public class DateCal extends Estimate {
                 dateArray[0] = dayOfMonth;
                 dateArray[1] = month+1;
                 dateArray[2] = year;
-
+                String mahina = getMonth(month+1);
                 StringBuffer buff = new StringBuffer();
-                buff.append(dayOfMonth+""+(month+1)+""+year+"\n");
+                buff.append(dayOfMonth+"-"+mahina+"-"+year+"\n");
                 dateString = buff.toString();
                 mySpinner1Initiate();
             }
@@ -72,8 +72,8 @@ public class DateCal extends Estimate {
 
     // The method that displays the popup.
     private void showPopup(final Activity context, Point p) {
-        int popupWidth = 600;
-        int popupHeight = 700;
+        int popupWidth = 300;
+        int popupHeight = 400;
 
         // Inflate the popup_layout.xml
         LinearLayout viewGroup = (LinearLayout) context.findViewById(R.id.popup);
@@ -118,14 +118,17 @@ public class DateCal extends Estimate {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
                 if(i == 0) {//show popup
-                    Toast.makeText(getApplicationContext(), "Hi :(", Toast.LENGTH_SHORT).show();
-                    if (p != null)
-                        showPopup(DateCal.this, p);
-                }
-                if(i == 1){
+
+//                    if (p != null)
+//                        showPopup(DateCal.this, p);
                     Intent nextScreen = new Intent(getApplicationContext(),DailyExpense.class);
                     nextScreen.putExtra("passarg", dateString);
                     startActivity(nextScreen);
+                }
+                if(i == 1){
+                    Intent showScreen = new Intent(getApplicationContext(), ShowExpenses.class);
+                    showScreen.putExtra("passarg", dateString);
+                    startActivity(showScreen);
                 }
                 if(i == 2) {
                     Intent estimateScreen = new Intent(getApplicationContext(), Estimate.class);
@@ -138,6 +141,33 @@ public class DateCal extends Estimate {
                 Toast.makeText(getApplicationContext(), "Select an option!", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+    String getMonth(int moy) {
+        if (moy == 1)
+            return "Jan";
+        if (moy == 2)
+            return "Feb";
+        if (moy == 3)
+            return "Mar";
+        if (moy == 4)
+            return "Apr";
+        if (moy == 5)
+            return "May";
+        if (moy == 6)
+            return "Jun";
+        if (moy == 7)
+            return "Jul";
+        if (moy == 8)
+            return "Aug";
+        if (moy == 9)
+            return "Sep";
+        if (moy == 10)
+            return "Oct";
+        if (moy == 11)
+            return "Nov";
+        if (moy == 12)
+            return "Dec";
+        return "";
     }
 
 }
