@@ -16,13 +16,15 @@ public class DailyExpense extends Estimate{
     EditText expense_entry;
     int category = 0;
     String dateData;
+    int times = 0;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.date_expense);
         expense_entry=(EditText) findViewById(R.id.editText);
         Intent intent = getIntent();
+        times += 1;
         dateData = intent.getStringExtra("passarg");
-
+        myMessage(""+times);
     }
 
     public void cancel(View view) {
@@ -32,20 +34,38 @@ public class DailyExpense extends Estimate{
 
     public void save(View view)
     {
-        if(category==1)
-
-        {int value = Integer.parseInt(expense_entry.getText().toString());
-            long id = dbref.InsertRecord(dateData, value, 0, 0, 0);}
-        if(category==2)
-        {int value = Integer.parseInt(expense_entry.getText().toString());
-            long id = dbref.InsertRecord(dateData, 0, value, 0, 0);}
-        if(category==3)
-        {int value = Integer.parseInt(expense_entry.getText().toString());
-            long id = dbref.InsertRecord(dateData, 0, 0, value, 0);}
-        if(category==4)
-        { int value = Integer.parseInt(expense_entry.getText().toString());
-
-            long id = dbref.InsertRecord(dateData, 0, 0, 0, value);}
+        if(category==1) { // education
+            int value = Integer.parseInt(expense_entry.getText().toString());
+            long id;
+            if(times == 1)
+                id = dbref.InsertRecord(dateData, value, 0, 0, 0);
+            else
+                id = dbref.UpdateOneArgRecord(dateData, value, 0, 0, 0);
+        }
+        if(category==2) { // transport
+            int value = Integer.parseInt(expense_entry.getText().toString());
+            long id;
+            if(times == 1)
+                id = dbref.InsertRecord(dateData, 0, value, 0, 0);
+            else
+                id = dbref.UpdateOneArgRecord(dateData, 0, value, 0, 0);
+        }
+        if(category==3) { // entertainment
+            int value = Integer.parseInt(expense_entry.getText().toString());
+            long id;
+            if(times == 1)
+                id = dbref.InsertRecord(dateData, 0, 0, value, 0);
+            else
+                id = dbref.UpdateOneArgRecord(dateData, 0, 0, value, 0);
+        }
+        if(category==4) { // food
+            int value = Integer.parseInt(expense_entry.getText().toString());
+            long id;
+            if(times == 1)
+                id = dbref.InsertRecord(dateData, 0, 0, 0, value);
+            else
+                id = dbref.UpdateOneArgRecord(dateData, 0, 0, 0, value);
+        }
 
     }
     public  void image1(View view)
@@ -56,42 +76,28 @@ public class DailyExpense extends Estimate{
         {
             case R.id.radioButton4 : //Education
                 if(status)
-
                     category= 1;
-
-
-
                 break;
 
             case R.id.radioButton5: // transportation
                 if(status)
-
                     category=2;
-
-
                 break;
 
             case R.id.radioButton6 : // entertainment
                 if(status)
-
                     category=3;
-
-
                 break;
 
             case R.id.radioButton7 : // food
                 if(status)
-
                     category=4;
-
-
                 break; // We were on a break!!!
-
         }
     }
 
 
-    public void myMessage(String str)
+    public void myMessage(String str) // for debugging purposes
     {
         Toast.makeText(getApplicationContext(),str,Toast.LENGTH_SHORT).show();
     }

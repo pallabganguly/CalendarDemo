@@ -32,7 +32,6 @@ public class MySQLiteSecond {
         contentValues.put(newSQLiteOpenHelper.FOOD, food);
 
         long id=db.insert(newSQLiteOpenHelper.TABLE_NAME, null, contentValues);
-        Toast.makeText(context, ""+id , Toast.LENGTH_SHORT).show();
         return id;
     }
 
@@ -54,13 +53,32 @@ public class MySQLiteSecond {
 //        return buffer.toString();
 //    }
 
-    public int[] SearchOneArgRecord(String date) {
+    public String DisplayByDate(String date) { // display record using date as key date, return string
+        SQLiteDatabase db = newSQLiteOpenHelper.getWritableDatabase();
+        String coloumns[] = {MySQLiteOpHelperTwo.UID, MySQLiteOpHelperTwo.EDUCN, MySQLiteOpHelperTwo.TRANS, MySQLiteOpHelperTwo.ENTER, MySQLiteOpHelperTwo.FOOD};
+        Cursor cursor = db.query(MySQLiteOpHelperTwo.TABLE_NAME, coloumns, MySQLiteSecond.MySQLiteOpHelperTwo.DATE+" = '"+date+"'", null, null, null, null);
+        StringBuffer buffer = new StringBuffer();
+        while(cursor.moveToNext()) {
+            int index1 = cursor.getColumnIndex(MySQLiteOpHelperTwo.UID);
+            int index2 = cursor.getColumnIndex(MySQLiteOpHelperTwo.EDUCN);
+            int index3 = cursor.getColumnIndex(MySQLiteOpHelperTwo.TRANS);
+            int index4 = cursor.getColumnIndex(MySQLiteOpHelperTwo.ENTER);
+            int index5 = cursor.getColumnIndex(MySQLiteOpHelperTwo.FOOD);
+            String cat1=cursor.getString(index2);
+            String cat2=cursor.getString(index3);
+            String cat3=cursor.getString(index4);
+            String cat4=cursor.getString(index5);
+            buffer.append(cat1+" "+cat2+" "+cat3+" "+cat4+" "+ "\n");
+        }
+        return buffer.toString();
+    }
+
+    public int[] SearchOneArgRecord(String date) { // same as above, but return array instead
 
         // Searches db for a record using 'date' as key
         SQLiteDatabase db=newSQLiteOpenHelper.getWritableDatabase();
         String[] columns={MySQLiteOpHelperTwo.UID, MySQLiteOpHelperTwo.EDUCN, MySQLiteOpHelperTwo.TRANS, MySQLiteOpHelperTwo.ENTER, MySQLiteOpHelperTwo.FOOD};
         Cursor cursor=db.query(MySQLiteOpHelperTwo.TABLE_NAME, columns, MySQLiteSecond.MySQLiteOpHelperTwo.DATE+" = '"+date+"'", null, null, null, null);
-        StringBuffer buffer=new StringBuffer();
         int values[] = new int[5];
         while(cursor.moveToNext()) {
             int index1 = cursor.getColumnIndex(MySQLiteOpHelperTwo.UID);
@@ -113,16 +131,19 @@ public class MySQLiteSecond {
 //        return buffer.toString();
 //    }
 //
-//    public int UpdateOneArgRecord(String usrname,String newpassword) {
-//        //update Usr_table set Usr_Password='amit123456' where Usr_Name='amit'
-//        // MyToastMessage.myMessage(context, "Executing UpdateOneArgRecord");
-//        SQLiteDatabase db=newSQLiteOpenHelper.getWritableDatabase();
-//        ContentValues contentValues=new ContentValues();
-//        contentValues.put(MySQLiteSecond.MySQLiteOpHelperTwo.PASSWORD, newpassword);
-//        int count=db.update(MySQLiteSecond.MySQLiteOpHelperTwo.TABLE_NAME, contentValues, MySQLiteSecond.MySQLiteOpHelperTwo.NAME+" = '"+usrname+"'" , null);
-//
-//        return count;
-//    }
+    public int UpdateOneArgRecord(String date, int educ, int trans, int enter, int food) {  //update record by date
+        //update Usr_table set Usr_Password='amit123456' where Usr_Name='amit'
+        // MyToastMessage.myMessage(context, "Executing UpdateOneArgRecord");
+        SQLiteDatabase db=newSQLiteOpenHelper.getWritableDatabase();
+        ContentValues contentValues=new ContentValues();
+        contentValues.put(MySQLiteOpHelperTwo.EDUCN, educ);
+        contentValues.put(MySQLiteOpHelperTwo.TRANS, trans);
+        contentValues.put(MySQLiteOpHelperTwo.ENTER, enter);
+        contentValues.put(MySQLiteOpHelperTwo.FOOD, food);
+        int count=db.update(MySQLiteOpHelperTwo.TABLE_NAME, contentValues, MySQLiteOpHelperTwo.DATE+" = '"+date+"'" , null);
+
+        return count;
+    }
 //
 //    public int UpdateVoidArgRecord(String usrname,String newpassword) {
 //        //update Usr_table set Usr_Password=? where Usr_Name=?
@@ -144,8 +165,6 @@ public class MySQLiteSecond {
         private static final String TABLE_NAME = "transaction_table";
         private static final int DATABASE_VERSION = 1;
         private static final String UID = "_id";
-//        private static final String NAME = "Usr_Name";
-//        private static final String PASSWORD = "Usr_Password";
         private static final String DATE = "date";
         private static final String EDUCN = "education";
         private static final String TRANS = "transport";
@@ -159,15 +178,14 @@ public class MySQLiteSecond {
         public MySQLiteOpHelperTwo(Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
             this.context = context;
-            Toast.makeText(context, "Constructor ppip callled!", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onCreate(SQLiteDatabase db) {
             try {
                 db.execSQL(CREATE_TABLE);
-                Toast.makeText(context, "Table Created!", Toast.LENGTH_SHORT).show();
-                Toast.makeText(context, CREATE_TABLE, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, "Table Created!", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(context, CREATE_TABLE, Toast.LENGTH_SHORT).show();
 
             } catch (Exception e) {
                 e.printStackTrace();

@@ -17,7 +17,6 @@ public class Estimate extends Main{
     EditText edu, foo, trans, enter;
     Context curconext;
     MySQLiteSecond dbref;
-
     @Override
     protected void onCreate(Bundle savedInstanceState)
     {
@@ -25,6 +24,7 @@ public class Estimate extends Main{
         setContentView(R.layout.estimate);
         Intent i = getIntent();
         //String arg=i.getStringExtra("passarg");
+
         edu = (EditText) findViewById(R.id.editText1);
         trans = (EditText) findViewById(R.id.editText2);
         enter = (EditText) findViewById(R.id.editText3);
@@ -39,13 +39,28 @@ public class Estimate extends Main{
         int transport = Integer.parseInt(trans.getText().toString());
         int entertainment = Integer.parseInt(enter.getText().toString());
         int food = Integer.parseInt(foo.getText().toString());
-        long id = dbref.InsertRecord("initial", education, transport, entertainment, food);
-        if(id<0)
-            Toast.makeText(getApplicationContext(),"Oops, something went wrong!", Toast.LENGTH_LONG).show();
+
+        String getRecords = dbref.DisplayByDate("initial");
+
+        if(getRecords.isEmpty()) {
+            long id = dbref.InsertRecord("initial", education, transport, entertainment, food);
+            if (id < 0)
+                Toast.makeText(getApplicationContext(), "Oops, something went wrong!", Toast.LENGTH_LONG).show();
+            else {
+                Toast.makeText(getApplicationContext(),"inserted ", Toast.LENGTH_LONG).show();
+                Intent nextScreen = new Intent(getApplicationContext(), DateCal.class);
+                startActivity(nextScreen);
+            }
+        }
         else {
-//            Toast.makeText(getApplicationContext(),, Toast.LENGTH_LONG).show();
-            Intent nextScreen = new Intent(getApplicationContext(), DateCal.class);
-            startActivity(nextScreen);
+            long id = dbref.UpdateOneArgRecord("initial", education, transport, entertainment, food);
+            if (id < 0)
+                Toast.makeText(getApplicationContext(), "Oops, something went wrong!", Toast.LENGTH_LONG).show();
+            else {
+                Toast.makeText(getApplicationContext(),"updated", Toast.LENGTH_LONG).show();
+                Intent nextScreen = new Intent(getApplicationContext(), DateCal.class);
+                startActivity(nextScreen);
+            }
         }
     }
 }

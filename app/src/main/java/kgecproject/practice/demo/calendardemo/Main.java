@@ -33,8 +33,8 @@ public class Main extends AppCompatActivity {
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        toolbar.setTitle("Expense Calculator");
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        toolbar.setTitle("Expense Calculator");
 
         usrfld = (EditText)findViewById(R.id.editText0);
         pwfld = (EditText)findViewById(R.id.editText5);
