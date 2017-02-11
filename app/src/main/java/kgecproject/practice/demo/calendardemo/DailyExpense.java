@@ -24,7 +24,7 @@ public class DailyExpense extends Estimate{
         Intent intent = getIntent();
         times += 1;
         dateData = intent.getStringExtra("passarg");
-        myMessage(""+times);
+        //myMessage(""+times);
     }
 
     public void cancel(View view) {
@@ -34,37 +34,44 @@ public class DailyExpense extends Estimate{
 
     public void save(View view)
     {
-        if(category==1) { // education
-            int value = Integer.parseInt(expense_entry.getText().toString());
-            long id;
-            if(times == 1)
-                id = dbref.InsertRecord(dateData, value, 0, 0, 0);
-            else
-                id = dbref.UpdateOneArgRecord(dateData, value, 0, 0, 0);
+        if(expense_entry.getText().toString() == null) {
+            myMessage("Enter some expenses");
         }
-        if(category==2) { // transport
-            int value = Integer.parseInt(expense_entry.getText().toString());
-            long id;
-            if(times == 1)
-                id = dbref.InsertRecord(dateData, 0, value, 0, 0);
-            else
-                id = dbref.UpdateOneArgRecord(dateData, 0, value, 0, 0);
-        }
-        if(category==3) { // entertainment
-            int value = Integer.parseInt(expense_entry.getText().toString());
-            long id;
-            if(times == 1)
-                id = dbref.InsertRecord(dateData, 0, 0, value, 0);
-            else
-                id = dbref.UpdateOneArgRecord(dateData, 0, 0, value, 0);
-        }
-        if(category==4) { // food
-            int value = Integer.parseInt(expense_entry.getText().toString());
-            long id;
-            if(times == 1)
-                id = dbref.InsertRecord(dateData, 0, 0, 0, value);
-            else
-                id = dbref.UpdateOneArgRecord(dateData, 0, 0, 0, value);
+        else {
+            String getResult = dbref.DisplayByDate(dateData);
+            if (category == 1) { // education
+                int value = Integer.parseInt(expense_entry.getText().toString());
+                long id;
+
+                if (getResult.isEmpty())
+                    id = dbref.InsertRecord(dateData, value, 0, 0, 0);
+                else
+                    id = dbref.UpdateOneArgRecord(dateData, value, 0, 0, 0);
+            }
+            if (category == 2) { // transport
+                int value = Integer.parseInt(expense_entry.getText().toString());
+                long id;
+                if (getResult.isEmpty())
+                    id = dbref.InsertRecord(dateData, 0, value, 0, 0);
+                else
+                    id = dbref.UpdateOneArgRecord(dateData, 0, value, 0, 0);
+            }
+            if (category == 3) { // entertainment
+                int value = Integer.parseInt(expense_entry.getText().toString());
+                long id;
+                if (getResult.isEmpty())
+                    id = dbref.InsertRecord(dateData, 0, 0, value, 0);
+                else
+                    id = dbref.UpdateOneArgRecord(dateData, 0, 0, value, 0);
+            }
+            if (category == 4) { // food
+                int value = Integer.parseInt(expense_entry.getText().toString());
+                long id;
+                if (getResult.isEmpty())
+                    id = dbref.InsertRecord(dateData, 0, 0, 0, value);
+                else
+                    id = dbref.UpdateOneArgRecord(dateData, 0, 0, 0, value);
+            }
         }
 
     }

@@ -9,7 +9,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:background="@drawable/loginpaisa2"
+    android:background="@drawable/loginpaisa4"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="kgecproject.practice.demo.calendardemo.Main">
 
@@ -20,7 +20,7 @@
 
         <Space
             android:layout_width="match_parent"
-            android:layout_height="150dp" />
+            android:layout_height="250dp" />
 
         <EditText
             android:layout_width="match_parent"
@@ -30,6 +30,7 @@
             android:id="@+id/editText0"
             android:textAlignment="center"
             android:hint="username"
+            android:textColorHint="#F0F0F0"
             android:padding="20dp"
             android:textSize="20sp" />
 
@@ -45,6 +46,7 @@
             android:id="@+id/editText5"
             android:textAlignment="center"
             android:hint="password"
+            android:textColorHint="#F0F0F0"
             android:padding="20dp"
             android:textSize="20sp" />
 

@@ -1,12 +1,20 @@
 package kgecproject.practice.demo.calendardemo;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Point;
+import android.graphics.drawable.BitmapDrawable;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.CalendarView;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +31,7 @@ public class DateCal extends Estimate {
     String options [] = {"Show Expenses", "Edit Expenses", "Revise Estimate"};
     String dateString = "";
     int dateArray[] = new int[3];
+    Point p;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_main);
@@ -52,6 +61,54 @@ public class DateCal extends Estimate {
         });
     }
 
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+
+        //Initialize the Point with x, and y positions
+        p = new Point();
+        p.x = 40;
+        p.y = 40;
+    }
+
+    // The method that displays the popup.
+    private void showPopup(final Activity context, Point p) {
+        int popupWidth = 600;
+        int popupHeight = 700;
+
+        // Inflate the popup_layout.xml
+        LinearLayout viewGroup = (LinearLayout) context.findViewById(R.id.popup);
+        LayoutInflater layoutInflater = (LayoutInflater) context
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        View layout = layoutInflater.inflate(R.layout.popup_layout, viewGroup);
+
+        // Creating the PopupWindow
+        final PopupWindow popup = new PopupWindow(context);
+        popup.setContentView(layout);
+        popup.setWidth(popupWidth);
+        popup.setHeight(popupHeight);
+        popup.setFocusable(true);
+
+        // Some offset to align the popup a bit to the right, and a bit down, relative to button's position.
+        int OFFSET_X = 30;
+        int OFFSET_Y = 30;
+
+        // Clear the default translucent background
+        popup.setBackgroundDrawable(new BitmapDrawable());
+
+        // Displaying the popup at the specified location, + offsets.
+        popup.showAtLocation(layout, Gravity.NO_GRAVITY, 10, 10);
+
+        // Getting a reference to Close button, and close the popup when clicked.
+        Button close = (Button) layout.findViewById(R.id.close);
+        close.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                popup.dismiss();
+            }
+        });
+    }
+
     private void mySpinner1Initiate() {
         mySpinner1=(Spinner) findViewById(R.id.spinner1);
         ArrayAdapter<String> myAdapter1=new ArrayAdapter<String>(this,android.R.layout.simple_spinner_item,options);
@@ -60,14 +117,16 @@ public class DateCal extends Estimate {
         mySpinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if(i == 0) //Go to view page
+                if(i == 0) {//show popup
                     Toast.makeText(getApplicationContext(), "Hi :(", Toast.LENGTH_SHORT).show();
+                    if (p != null)
+                        showPopup(DateCal.this, p);
+                }
                 if(i == 1){
                     Intent nextScreen = new Intent(getApplicationContext(),DailyExpense.class);
                     nextScreen.putExtra("passarg", dateString);
                     startActivity(nextScreen);
                 }
-                // myMessage1("Selected food is - " + options[i]);
                 if(i == 2) {
                     Intent estimateScreen = new Intent(getApplicationContext(), Estimate.class);
                     startActivity(estimateScreen);
