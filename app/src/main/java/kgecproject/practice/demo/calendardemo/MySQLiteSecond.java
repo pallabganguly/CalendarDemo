@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 /**
  * Created by pallab on 10/2/17.
@@ -13,37 +14,38 @@ import android.util.Log;
 
 public class MySQLiteSecond {
     Context context;
-    MySQLiteSecond.MySQLiteOpenHelper mySQLiteOpenHelper;
+    MySQLiteOpHelperTwo newSQLiteOpenHelper;
 
     public MySQLiteSecond(Context context){
         this.context = context;
-        mySQLiteOpenHelper = new MySQLiteSecond.MySQLiteOpenHelper(context);
+        newSQLiteOpenHelper = new MySQLiteOpHelperTwo(context);
     }
 
     public long InsertRecord(String date, int educ, int trans, int enter, int food) {
         //insert into Usr_table(Usr_Name,Usr_Password) values('amit','amit123');
-        SQLiteDatabase db=mySQLiteOpenHelper.getWritableDatabase();
+        SQLiteDatabase db=newSQLiteOpenHelper.getWritableDatabase();
         ContentValues contentValues=new ContentValues();
-        contentValues.put(mySQLiteOpenHelper.DATE, date);
-        contentValues.put(mySQLiteOpenHelper.EDUCN, educ);
-        contentValues.put(mySQLiteOpenHelper.TRANS, trans);
-        contentValues.put(mySQLiteOpenHelper.ENTER, enter);
-        contentValues.put(mySQLiteOpenHelper.FOOD, food);
+        contentValues.put(newSQLiteOpenHelper.DATE, date);
+        contentValues.put(newSQLiteOpenHelper.EDUCN, educ);
+        contentValues.put(newSQLiteOpenHelper.TRANS, trans);
+        contentValues.put(newSQLiteOpenHelper.ENTER, enter);
+        contentValues.put(newSQLiteOpenHelper.FOOD, food);
 
-        long id=db.insert(mySQLiteOpenHelper.TABLE_NAME, null, contentValues);
+        long id=db.insert(newSQLiteOpenHelper.TABLE_NAME, null, contentValues);
+        Toast.makeText(context, ""+id , Toast.LENGTH_SHORT).show();
         return id;
     }
 
 //    public String DisplayAllRecord() {
 //        //select _id,Usr_Name,Usr_Password from Usr_table;
-//        SQLiteDatabase db=mySQLiteOpenHelper.getWritableDatabase();
-//        String[] columns={MySQLiteSecond.MySQLiteOpenHelper.UID, MySQLiteSecond.MySQLiteOpenHelper.NAME, MySQLiteSecond.MySQLiteOpenHelper.PASSWORD};
-//        Cursor cursor=db.query(MySQLiteSecond.MySQLiteOpenHelper.TABLE_NAME, columns, null, null, null, null, null);
+//        SQLiteDatabase db=newSQLiteOpenHelper.getWritableDatabase();
+//        String[] columns={MySQLiteSecond.MySQLiteOpHelperTwo.UID, MySQLiteSecond.MySQLiteOpHelperTwo.NAME, MySQLiteSecond.MySQLiteOpHelperTwo.PASSWORD};
+//        Cursor cursor=db.query(MySQLiteSecond.MySQLiteOpHelperTwo.TABLE_NAME, columns, null, null, null, null, null);
 //        StringBuffer buffer=new StringBuffer();
 //        while(cursor.moveToNext()) {
-//            int index1=cursor.getColumnIndex(MySQLiteSecond.MySQLiteOpenHelper.UID);
-//            int index2=cursor.getColumnIndex(MySQLiteSecond.MySQLiteOpenHelper.NAME);
-//            int index3=cursor.getColumnIndex(MySQLiteSecond.MySQLiteOpenHelper.PASSWORD);
+//            int index1=cursor.getColumnIndex(MySQLiteSecond.MySQLiteOpHelperTwo.UID);
+//            int index2=cursor.getColumnIndex(MySQLiteSecond.MySQLiteOpHelperTwo.NAME);
+//            int index3=cursor.getColumnIndex(MySQLiteSecond.MySQLiteOpHelperTwo.PASSWORD);
 //            int cid=cursor.getInt(index1);
 //            String name=cursor.getString(index2);
 //            String password=cursor.getString(index3);
@@ -55,17 +57,17 @@ public class MySQLiteSecond {
     public int[] SearchOneArgRecord(String date) {
 
         // Searches db for a record using 'date' as key
-        SQLiteDatabase db=mySQLiteOpenHelper.getWritableDatabase();
-        String[] columns={MySQLiteSecond.MySQLiteOpenHelper.UID, MySQLiteSecond.MySQLiteOpenHelper.EDUCN, MySQLiteSecond.MySQLiteOpenHelper.TRANS, MySQLiteSecond.MySQLiteOpenHelper.ENTER, MySQLiteSecond.MySQLiteOpenHelper.FOOD};
-        Cursor cursor=db.query(MySQLiteSecond.MySQLiteOpenHelper.TABLE_NAME, columns, MySQLiteSecond.MySQLiteOpenHelper.DATE+" = '"+date+"'", null, null, null, null);
+        SQLiteDatabase db=newSQLiteOpenHelper.getWritableDatabase();
+        String[] columns={MySQLiteOpHelperTwo.UID, MySQLiteOpHelperTwo.EDUCN, MySQLiteOpHelperTwo.TRANS, MySQLiteOpHelperTwo.ENTER, MySQLiteOpHelperTwo.FOOD};
+        Cursor cursor=db.query(MySQLiteOpHelperTwo.TABLE_NAME, columns, MySQLiteSecond.MySQLiteOpHelperTwo.DATE+" = '"+date+"'", null, null, null, null);
         StringBuffer buffer=new StringBuffer();
         int values[] = new int[5];
         while(cursor.moveToNext()) {
-            int index1 = cursor.getColumnIndex(MySQLiteSecond.MySQLiteOpenHelper.UID);
-            int index2 = cursor.getColumnIndex(MySQLiteSecond.MySQLiteOpenHelper.EDUCN);
-            int index3 = cursor.getColumnIndex(MySQLiteSecond.MySQLiteOpenHelper.TRANS);
-            int index4 = cursor.getColumnIndex(MySQLiteSecond.MySQLiteOpenHelper.ENTER);
-            int index5 = cursor.getColumnIndex(MySQLiteSecond.MySQLiteOpenHelper.FOOD);
+            int index1 = cursor.getColumnIndex(MySQLiteOpHelperTwo.UID);
+            int index2 = cursor.getColumnIndex(MySQLiteOpHelperTwo.EDUCN);
+            int index3 = cursor.getColumnIndex(MySQLiteOpHelperTwo.TRANS);
+            int index4 = cursor.getColumnIndex(MySQLiteOpHelperTwo.ENTER);
+            int index5 = cursor.getColumnIndex(MySQLiteOpHelperTwo.FOOD);
             values[0] = cursor.getInt(index1);
             values[1] = cursor.getInt(index2);
             values[2] = cursor.getInt(index3);
@@ -77,32 +79,32 @@ public class MySQLiteSecond {
 
 //    public int DeleteOneArgRecord(String usrname) {
 //        //delete from Usr_table where Usr_Name='amit'
-//        SQLiteDatabase db=mySQLiteOpenHelper.getWritableDatabase();
-//        int count=db.delete(MySQLiteSecond.MySQLiteOpenHelper.TABLE_NAME, MySQLiteSecond.MySQLiteOpenHelper.NAME+" = '"+usrname+"'", null);
+//        SQLiteDatabase db=newSQLiteOpenHelper.getWritableDatabase();
+//        int count=db.delete(MySQLiteSecond.MySQLiteOpHelperTwo.TABLE_NAME, MySQLiteSecond.MySQLiteOpHelperTwo.NAME+" = '"+usrname+"'", null);
 //        return count;
 //    }
 //
 //    public int DeleteVoidArgRecord(String usrname) {
 //        ////delete from Usr_table where Usr_Name=?
-//        SQLiteDatabase db=mySQLiteOpenHelper.getWritableDatabase();
+//        SQLiteDatabase db=newSQLiteOpenHelper.getWritableDatabase();
 //        String[] arguments={usrname};
-//        int count=db.delete(MySQLiteSecond.MySQLiteOpenHelper.TABLE_NAME, MySQLiteSecond.MySQLiteOpenHelper.NAME+" = ? ", arguments);
+//        int count=db.delete(MySQLiteSecond.MySQLiteOpHelperTwo.TABLE_NAME, MySQLiteSecond.MySQLiteOpHelperTwo.NAME+" = ? ", arguments);
 //
 //        return count;
 //    }
 //
 //    public String SearchVoidArgRecord(String usrname,String usrpassword) {// checks both username and password
 //        //select _id,Usr_Name,Usr_Password from Usr_table where Usr_Name='amit';
-//        SQLiteDatabase db=mySQLiteOpenHelper.getWritableDatabase();
-//        String[] columns={MySQLiteSecond.MySQLiteOpenHelper.UID, MySQLiteSecond.MySQLiteOpenHelper.NAME, MySQLiteSecond.MySQLiteOpenHelper.PASSWORD};
+//        SQLiteDatabase db=newSQLiteOpenHelper.getWritableDatabase();
+//        String[] columns={MySQLiteSecond.MySQLiteOpHelperTwo.UID, MySQLiteSecond.MySQLiteOpHelperTwo.NAME, MySQLiteSecond.MySQLiteOpHelperTwo.PASSWORD};
 //        String[] selectionArgs={usrname,usrpassword};
-//        Cursor cursor=db.query(MySQLiteSecond.MySQLiteOpenHelper.TABLE_NAME, columns, MySQLiteSecond.MySQLiteOpenHelper.NAME+" = ? and "+ MySQLiteSecond.MySQLiteOpenHelper.PASSWORD + "= ?"
+//        Cursor cursor=db.query(MySQLiteSecond.MySQLiteOpHelperTwo.TABLE_NAME, columns, MySQLiteSecond.MySQLiteOpHelperTwo.NAME+" = ? and "+ MySQLiteSecond.MySQLiteOpHelperTwo.PASSWORD + "= ?"
 //                , selectionArgs, null, null, null);
 //        StringBuffer buffer=new StringBuffer();
 //        while(cursor.moveToNext()) {
-//            int index1=cursor.getColumnIndex(MySQLiteSecond.MySQLiteOpenHelper.UID);
-//            int index2=cursor.getColumnIndex(MySQLiteSecond.MySQLiteOpenHelper.NAME);
-//            int index3=cursor.getColumnIndex(MySQLiteSecond.MySQLiteOpenHelper.PASSWORD);
+//            int index1=cursor.getColumnIndex(MySQLiteSecond.MySQLiteOpHelperTwo.UID);
+//            int index2=cursor.getColumnIndex(MySQLiteSecond.MySQLiteOpHelperTwo.NAME);
+//            int index3=cursor.getColumnIndex(MySQLiteSecond.MySQLiteOpHelperTwo.PASSWORD);
 //            int cid=cursor.getInt(index1);
 //            String name=cursor.getString(index2);
 //            String password=cursor.getString(index3);
@@ -114,10 +116,10 @@ public class MySQLiteSecond {
 //    public int UpdateOneArgRecord(String usrname,String newpassword) {
 //        //update Usr_table set Usr_Password='amit123456' where Usr_Name='amit'
 //        // MyToastMessage.myMessage(context, "Executing UpdateOneArgRecord");
-//        SQLiteDatabase db=mySQLiteOpenHelper.getWritableDatabase();
+//        SQLiteDatabase db=newSQLiteOpenHelper.getWritableDatabase();
 //        ContentValues contentValues=new ContentValues();
-//        contentValues.put(MySQLiteSecond.MySQLiteOpenHelper.PASSWORD, newpassword);
-//        int count=db.update(MySQLiteSecond.MySQLiteOpenHelper.TABLE_NAME, contentValues, MySQLiteSecond.MySQLiteOpenHelper.NAME+" = '"+usrname+"'" , null);
+//        contentValues.put(MySQLiteSecond.MySQLiteOpHelperTwo.PASSWORD, newpassword);
+//        int count=db.update(MySQLiteSecond.MySQLiteOpHelperTwo.TABLE_NAME, contentValues, MySQLiteSecond.MySQLiteOpHelperTwo.NAME+" = '"+usrname+"'" , null);
 //
 //        return count;
 //    }
@@ -125,11 +127,11 @@ public class MySQLiteSecond {
 //    public int UpdateVoidArgRecord(String usrname,String newpassword) {
 //        //update Usr_table set Usr_Password=? where Usr_Name=?
 //        // MyToastMessage.myMessage(context, "Executing UpdateVoidArgRecord");
-//        SQLiteDatabase db=mySQLiteOpenHelper.getWritableDatabase();
+//        SQLiteDatabase db=newSQLiteOpenHelper.getWritableDatabase();
 //        ContentValues contentValues=new ContentValues();
-//        contentValues.put(MySQLiteSecond.MySQLiteOpenHelper.PASSWORD, newpassword);
+//        contentValues.put(MySQLiteSecond.MySQLiteOpHelperTwo.PASSWORD, newpassword);
 //        String[] arguments={usrname};
-//        int count=db.update(MySQLiteSecond.MySQLiteOpenHelper.TABLE_NAME, contentValues, MySQLiteSecond.MySQLiteOpenHelper.NAME+" = ? ", arguments);
+//        int count=db.update(MySQLiteSecond.MySQLiteOpHelperTwo.TABLE_NAME, contentValues, MySQLiteSecond.MySQLiteOpHelperTwo.NAME+" = ? ", arguments);
 //
 //        return count;
 //    }
@@ -137,7 +139,7 @@ public class MySQLiteSecond {
 
 
 
-    public class MySQLiteOpenHelper extends SQLiteOpenHelper {
+    public class MySQLiteOpHelperTwo extends SQLiteOpenHelper {
         private static final String DATABASE_NAME = "transaction.db";
         private static final String TABLE_NAME = "transaction_table";
         private static final int DATABASE_VERSION = 1;
@@ -150,23 +152,26 @@ public class MySQLiteSecond {
         private static final String ENTER = "entertainment";
         private static final String FOOD = "food";
         private static final String CREATE_TABLE = "CREATE TABLE " + TABLE_NAME + " (" + UID + " INTEGER PRIMARY KEY AUTOINCREMENT," + DATE +
-                " VARCHAR(255)," + EDUCN + "INTEGER "+ TRANS +" INTEGER "+ ENTER + " INTEGER "+ FOOD +" INTEGER "+");";
+                " VARCHAR(255)," + EDUCN + " INTEGER,"+ TRANS +" INTEGER,"+ ENTER + " INTEGER,"+ FOOD +" INTEGER);";
         private static final String DROP_TABLE = "DROP TABLE IF EXISTS " + TABLE_NAME + ";";
         private Context context;
 
-        public MySQLiteOpenHelper(Context context) {
+        public MySQLiteOpHelperTwo(Context context) {
             super(context, DATABASE_NAME, null, DATABASE_VERSION);
             this.context = context;
-            // MyToastMessage.myMessage(context, "Constructor called...");
+            Toast.makeText(context, "Constructor ppip callled!", Toast.LENGTH_SHORT).show();
         }
 
         @Override
         public void onCreate(SQLiteDatabase db) {
             try {
                 db.execSQL(CREATE_TABLE);
+                Toast.makeText(context, "Table Created!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(context, CREATE_TABLE, Toast.LENGTH_SHORT).show();
+
             } catch (Exception e) {
-                // e.printStackTrace();
-                // MyToastMessage.myMessage(context, "" + e);
+                e.printStackTrace();
+                Toast.makeText(context, e+"", Toast.LENGTH_SHORT).show();
             }
         }
 

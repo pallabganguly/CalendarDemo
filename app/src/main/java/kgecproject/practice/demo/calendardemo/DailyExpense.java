@@ -33,13 +33,19 @@ public class DailyExpense extends Estimate{
     public void save(View view)
     {
         if(category==1)
-            myMessage("..1");
+
+        {int value = Integer.parseInt(expense_entry.getText().toString());
+            long id = dbref.InsertRecord(dateData, value, 0, 0, 0);}
         if(category==2)
-            myMessage("..2");
+        {int value = Integer.parseInt(expense_entry.getText().toString());
+            long id = dbref.InsertRecord(dateData, 0, value, 0, 0);}
         if(category==3)
-            myMessage("..3");
+        {int value = Integer.parseInt(expense_entry.getText().toString());
+            long id = dbref.InsertRecord(dateData, 0, 0, value, 0);}
         if(category==4)
-            myMessage("..4");
+        { int value = Integer.parseInt(expense_entry.getText().toString());
+
+            long id = dbref.InsertRecord(dateData, 0, 0, 0, value);}
 
     }
     public  void image1(View view)
@@ -50,40 +56,36 @@ public class DailyExpense extends Estimate{
         {
             case R.id.radioButton4 : //Education
                 if(status)
-                {
+
                     category= 1;
 
-                    int value = Integer.parseInt(expense_entry.getText().toString());
-                    long id = dbref.InsertRecord(dateData, value, 0, 0, 0);
 
-                } break;
+
+                break;
 
             case R.id.radioButton5: // transportation
                 if(status)
-                {
+
                     category=2;
 
-                    int value = Integer.parseInt(expense_entry.getText().toString());
-                    long id = dbref.InsertRecord(dateData, 0, value, 0, 0);
-                } break;
+
+                break;
 
             case R.id.radioButton6 : // entertainment
                 if(status)
-                {
+
                     category=3;
 
-                    int value = Integer.parseInt(expense_entry.getText().toString());
-                    long id = dbref.InsertRecord(dateData, 0, 0, value, 0);
-                } break;
+
+                break;
 
             case R.id.radioButton7 : // food
                 if(status)
-                {
+
                     category=4;
 
-                    int value = Integer.parseInt(expense_entry.getText().toString());
-                    long id = dbref.InsertRecord(dateData, 0, 0, 0, value);
-                } break; // We were on a break!!!
+
+                break; // We were on a break!!!
 
         }
     }

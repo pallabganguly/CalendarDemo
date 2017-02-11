@@ -25,23 +25,25 @@ public class Estimate extends Main{
         setContentView(R.layout.estimate);
         Intent i = getIntent();
         //String arg=i.getStringExtra("passarg");
-        curconext = this;
-        dbref = new MySQLiteSecond(curconext);
         edu = (EditText) findViewById(R.id.editText1);
         trans = (EditText) findViewById(R.id.editText2);
         enter = (EditText) findViewById(R.id.editText3);
         foo = (EditText) findViewById(R.id.editText4);
+        curconext = this;
+        dbref = new MySQLiteSecond(curconext);
     }
 
-    public void submitData(View view) {
-        education = Integer.parseInt(edu.getText().toString());
-        transport = Integer.parseInt(trans.getText().toString());
-        entertainment = Integer.parseInt(enter.getText().toString());
-        food = Integer.parseInt(foo.getText().toString());
-        long insid = dbref.InsertRecord("initial", education, transport, entertainment, food);
-        if(insid<0)
+    public void submitData(View view)
+    {
+        int education = Integer.parseInt(edu.getText().toString());
+        int transport = Integer.parseInt(trans.getText().toString());
+        int entertainment = Integer.parseInt(enter.getText().toString());
+        int food = Integer.parseInt(foo.getText().toString());
+        long id = dbref.InsertRecord("initial", education, transport, entertainment, food);
+        if(id<0)
             Toast.makeText(getApplicationContext(),"Oops, something went wrong!", Toast.LENGTH_LONG).show();
         else {
+//            Toast.makeText(getApplicationContext(),, Toast.LENGTH_LONG).show();
             Intent nextScreen = new Intent(getApplicationContext(), DateCal.class);
             startActivity(nextScreen);
         }

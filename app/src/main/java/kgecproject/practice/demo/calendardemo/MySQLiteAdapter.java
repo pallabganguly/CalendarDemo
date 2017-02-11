@@ -6,6 +6,7 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
+import android.widget.Toast;
 
 /**
  * Created by pallab on 8/2/17.
@@ -153,6 +154,8 @@ public class MySQLiteAdapter {
         public void onCreate(SQLiteDatabase db) {
             try {
                 db.execSQL(CREATE_TABLE);
+                Toast.makeText(context, CREATE_TABLE, Toast.LENGTH_SHORT).show();
+
             } catch (Exception e) {
                 // e.printStackTrace();
                 // MyToastMessage.myMessage(context, "" + e);

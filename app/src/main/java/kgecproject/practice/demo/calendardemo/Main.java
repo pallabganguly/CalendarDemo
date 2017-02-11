@@ -27,9 +27,10 @@ public class Main extends AppCompatActivity {
     EditText usrfld, pwfld;
     MySQLiteAdapter mySQLiteAdapter;
     Context context;
-    protected int education, transport, entertainment, food;
+    //protected int education, transport, entertainment, food;
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState)
+    {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
