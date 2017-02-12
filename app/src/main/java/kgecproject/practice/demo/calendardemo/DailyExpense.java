@@ -17,6 +17,7 @@ public class DailyExpense extends Estimate{
     int category = 0;
     String dateData;
     int times = 0;
+    int value1 = 0,value2 = 0,value3 = 0,value4 = 0;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.date_expense);
@@ -24,6 +25,9 @@ public class DailyExpense extends Estimate{
         Intent intent = getIntent();
         times += 1;
         dateData = intent.getStringExtra("passarg");
+        Toast.makeText(getApplicationContext(), dateData, Toast.LENGTH_LONG).show();
+        curconext = this;
+        dbref = new MySQLiteSecond(curconext);
         //myMessage(""+times);
     }
 
@@ -38,44 +42,37 @@ public class DailyExpense extends Estimate{
             myMessage("Enter some expenses");
         }
         else {
-            String getResult = dbref.DisplayByDate(dateData);
-            if (category == 1) { // education
-                int value = Integer.parseInt(expense_entry.getText().toString());
-                long id;
+            if (category == 1) // education
+                value1 = Integer.parseInt(expense_entry.getText().toString());
 
-                if (getResult.isEmpty())
-                    id = dbref.InsertRecord(dateData, value, 0, 0, 0);
-                else
-                    id = dbref.UpdateOneArgRecord(dateData, value, 0, 0, 0);
-            }
-            if (category == 2) { // transport
-                int value = Integer.parseInt(expense_entry.getText().toString());
-                long id;
-                if (getResult.isEmpty())
-                    id = dbref.InsertRecord(dateData, 0, value, 0, 0);
-                else
-                    id = dbref.UpdateOneArgRecord(dateData, 0, value, 0, 0);
-            }
-            if (category == 3) { // entertainment
-                int value = Integer.parseInt(expense_entry.getText().toString());
-                long id;
-                if (getResult.isEmpty())
-                    id = dbref.InsertRecord(dateData, 0, 0, value, 0);
-                else
-                    id = dbref.UpdateOneArgRecord(dateData, 0, 0, value, 0);
-            }
-            if (category == 4) { // food
-                int value = Integer.parseInt(expense_entry.getText().toString());
-                long id;
-                if (getResult.isEmpty())
-                    id = dbref.InsertRecord(dateData, 0, 0, 0, value);
-                else
-                    id = dbref.UpdateOneArgRecord(dateData, 0, 0, 0, value);
-            }
+            if (category == 2) // transport
+                value2 = Integer.parseInt(expense_entry.getText().toString());
+
+            if (category == 3) // entertainment
+                value3 = Integer.parseInt(expense_entry.getText().toString());
+
+            if (category == 4) // food
+                value4 = Integer.parseInt(expense_entry.getText().toString());
+
+            put(view);
         }
 
     }
-    public  void image1(View view)
+    protected void put(View view) {
+        long id;
+        String getResult = dbref.DisplayByDate(dateData);
+        if (getResult.isEmpty()){
+            id = dbref.InsertRecord(dateData, value1, value2, value3, value4);
+            myMessage("inserted");
+        }
+        else{
+            id = dbref.UpdateOneArgRecord(dateData, value1, value2, value3, value4);
+            myMessage("updated");
+        }
+        String hi = dbref.DisplayByDate(dateData);
+        Toast.makeText(getApplicationContext(), hi, Toast.LENGTH_LONG).show();
+    }
+    public void image1(View view)
     {
         boolean status = ((RadioButton)view).isChecked();
 

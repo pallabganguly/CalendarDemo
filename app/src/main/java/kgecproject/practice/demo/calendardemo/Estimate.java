@@ -47,7 +47,7 @@ public class Estimate extends Main{
             if (id < 0)
                 Toast.makeText(getApplicationContext(), "Oops, something went wrong!", Toast.LENGTH_LONG).show();
             else {
-                Toast.makeText(getApplicationContext(),"inserted ", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"inserted", Toast.LENGTH_SHORT).show();
                 Intent nextScreen = new Intent(getApplicationContext(), DateCal.class);
                 startActivity(nextScreen);
             }
@@ -57,7 +57,7 @@ public class Estimate extends Main{
             if (id < 0)
                 Toast.makeText(getApplicationContext(), "Oops, something went wrong!", Toast.LENGTH_LONG).show();
             else {
-                Toast.makeText(getApplicationContext(),"updated", Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),getRecords, Toast.LENGTH_SHORT).show();
                 Intent nextScreen = new Intent(getApplicationContext(), DateCal.class);
                 startActivity(nextScreen);
             }

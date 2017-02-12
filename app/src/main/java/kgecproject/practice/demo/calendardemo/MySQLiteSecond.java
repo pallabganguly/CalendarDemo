@@ -35,23 +35,26 @@ public class MySQLiteSecond {
         return id;
     }
 
-//    public String DisplayAllRecord() {
-//        //select _id,Usr_Name,Usr_Password from Usr_table;
-//        SQLiteDatabase db=newSQLiteOpenHelper.getWritableDatabase();
-//        String[] columns={MySQLiteSecond.MySQLiteOpHelperTwo.UID, MySQLiteSecond.MySQLiteOpHelperTwo.NAME, MySQLiteSecond.MySQLiteOpHelperTwo.PASSWORD};
-//        Cursor cursor=db.query(MySQLiteSecond.MySQLiteOpHelperTwo.TABLE_NAME, columns, null, null, null, null, null);
-//        StringBuffer buffer=new StringBuffer();
-//        while(cursor.moveToNext()) {
-//            int index1=cursor.getColumnIndex(MySQLiteSecond.MySQLiteOpHelperTwo.UID);
-//            int index2=cursor.getColumnIndex(MySQLiteSecond.MySQLiteOpHelperTwo.NAME);
-//            int index3=cursor.getColumnIndex(MySQLiteSecond.MySQLiteOpHelperTwo.PASSWORD);
-//            int cid=cursor.getInt(index1);
-//            String name=cursor.getString(index2);
-//            String password=cursor.getString(index3);
-//            buffer.append(cid+" "+name+" "+password+"\n");
-//        }
-//        return buffer.toString();
-//    }
+    public String DisplayAllRecord() {
+        //select _id,Usr_Name,Usr_Password from Usr_table;
+        SQLiteDatabase db=newSQLiteOpenHelper.getWritableDatabase();
+        String coloumns[] = {MySQLiteOpHelperTwo.UID, MySQLiteOpHelperTwo.EDUCN, MySQLiteOpHelperTwo.TRANS, MySQLiteOpHelperTwo.ENTER, MySQLiteOpHelperTwo.FOOD};
+        Cursor cursor = db.query(MySQLiteOpHelperTwo.TABLE_NAME, coloumns, null, null, null, null, null);
+        StringBuffer buffer=new StringBuffer();
+        while(cursor.moveToNext()) {
+            int index1 = cursor.getColumnIndex(MySQLiteOpHelperTwo.UID);
+            int index2 = cursor.getColumnIndex(MySQLiteOpHelperTwo.EDUCN);
+            int index3 = cursor.getColumnIndex(MySQLiteOpHelperTwo.TRANS);
+            int index4 = cursor.getColumnIndex(MySQLiteOpHelperTwo.ENTER);
+            int index5 = cursor.getColumnIndex(MySQLiteOpHelperTwo.FOOD);
+            String cat1=cursor.getString(index2);
+            String cat2=cursor.getString(index3);
+            String cat3=cursor.getString(index4);
+            String cat4=cursor.getString(index5);
+            buffer.append(cat1+" "+cat2+" "+cat3+" "+cat4+" "+ "\n");
+        }
+        return buffer.toString();
+    }
 
     public String DisplayByDate(String date) { // display record using date as key date, return string
         SQLiteDatabase db = newSQLiteOpenHelper.getWritableDatabase();

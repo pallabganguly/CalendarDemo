@@ -28,7 +28,7 @@ public class DateCal extends Estimate {
     CalendarView calendar;
     TextView textView;
     Spinner mySpinner1;
-    String options [] = {"Edit Expenses", "Show Expenses", "Revise Estimate"};
+    String options [] = {"", "Edit Expenses", "Show Expenses", "Revise Estimate"};
     String dateString = "";
     int dateArray[] = new int[3];
     Point p;
@@ -117,7 +117,7 @@ public class DateCal extends Estimate {
         mySpinner1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-                if(i == 0) {//show popup
+                if(i == 1) {//show popup
 
 //                    if (p != null)
 //                        showPopup(DateCal.this, p);
@@ -125,12 +125,12 @@ public class DateCal extends Estimate {
                     nextScreen.putExtra("passarg", dateString);
                     startActivity(nextScreen);
                 }
-                if(i == 1){
+                if(i == 2){
                     Intent showScreen = new Intent(getApplicationContext(), ShowExpenses.class);
                     showScreen.putExtra("passarg", dateString);
                     startActivity(showScreen);
                 }
-                if(i == 2) {
+                if(i == 3) {
                     Intent estimateScreen = new Intent(getApplicationContext(), Estimate.class);
                     startActivity(estimateScreen);
                 }
