@@ -98,14 +98,14 @@ public class MySQLiteSecond {
         return values;
     }
 
-//    public int DeleteOneArgRecord(String usrname) {
-//        //delete from Usr_table where Usr_Name='amit'
-//        SQLiteDatabase db=newSQLiteOpenHelper.getWritableDatabase();
-//        int count=db.delete(MySQLiteSecond.MySQLiteOpHelperTwo.TABLE_NAME, MySQLiteSecond.MySQLiteOpHelperTwo.NAME+" = '"+usrname+"'", null);
-//        return count;
-//    }
-//
-//    public int DeleteVoidArgRecord(String usrname) {
+    public void DeleteOneArgRecord(String usrname) {
+        //delete from Usr_table where Usr_Name='amit'
+        SQLiteDatabase db=newSQLiteOpenHelper.getWritableDatabase();
+        int count=db.delete(MySQLiteSecond.MySQLiteOpHelperTwo.TABLE_NAME, MySQLiteOpHelperTwo.DATE+" = '"+usrname+"'", null);
+        //return count;
+    }
+
+    //    public int DeleteVoidArgRecord(String usrname) {
 //        ////delete from Usr_table where Usr_Name=?
 //        SQLiteDatabase db=newSQLiteOpenHelper.getWritableDatabase();
 //        String[] arguments={usrname};

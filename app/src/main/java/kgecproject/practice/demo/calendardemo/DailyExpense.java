@@ -17,7 +17,7 @@ public class DailyExpense extends Estimate{
     int category = 0;
     String dateData;
     int times = 0;
-    int value1 = 0,value2 = 0,value3 = 0,value4 = 0;
+    int value1 = 0, value2 = 0, value3 = 0, value4 = 0;
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.date_expense);
@@ -42,6 +42,15 @@ public class DailyExpense extends Estimate{
             myMessage("Enter some expenses");
         }
         else {
+            int res[] = dbref.SearchOneArgRecord(dateData);
+            String getResult = dbref.DisplayByDate(dateData);
+            if(!getResult.isEmpty()) {
+                value1 = res[1];
+                value2 = res[2];
+                value3 = res[3];
+                value4 = res[4];
+
+            }
             if (category == 1) // education
                 value1 = Integer.parseInt(expense_entry.getText().toString());
 
@@ -54,23 +63,19 @@ public class DailyExpense extends Estimate{
             if (category == 4) // food
                 value4 = Integer.parseInt(expense_entry.getText().toString());
 
-            put(view);
+            long id;
+            if (getResult.isEmpty()){
+                id = dbref.InsertRecord(dateData, value1, value2, value3, value4);
+                myMessage("inserted");
+            }
+            else{
+                id = dbref.UpdateOneArgRecord(dateData, value1, value2, value3, value4);
+                myMessage("updated");
+            }
+            String hi = dbref.DisplayByDate(dateData);
+            Toast.makeText(getApplicationContext(), hi, Toast.LENGTH_LONG).show();
         }
 
-    }
-    protected void put(View view) {
-        long id;
-        String getResult = dbref.DisplayByDate(dateData);
-        if (getResult.isEmpty()){
-            id = dbref.InsertRecord(dateData, value1, value2, value3, value4);
-            myMessage("inserted");
-        }
-        else{
-            id = dbref.UpdateOneArgRecord(dateData, value1, value2, value3, value4);
-            myMessage("updated");
-        }
-        String hi = dbref.DisplayByDate(dateData);
-        Toast.makeText(getApplicationContext(), hi, Toast.LENGTH_LONG).show();
     }
     public void image1(View view)
     {

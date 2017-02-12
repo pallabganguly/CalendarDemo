@@ -56,6 +56,8 @@ public class DateCal extends Estimate {
                 StringBuffer buff = new StringBuffer();
                 buff.append(dayOfMonth+"-"+mahina+"-"+year+"\n");
                 dateString = buff.toString();
+                int res[] = dbref.SearchOneArgRecord(dateString);
+                textView.setText(dateString+"Education: "+res[1]+"\nTransport: "+res[2]+"\nEntertainment: "+res[3]+"\nFood: "+res[4]);
                 mySpinner1Initiate();
             }
         });
