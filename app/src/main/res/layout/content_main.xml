@@ -48,7 +48,8 @@
         android:id="@+id/spinner1"
         android:layout_marginBottom="43dp"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:splitMotionEvents="false" />
 
     <TextView
         android:text="Select an option"

@@ -28,7 +28,7 @@ public class DateCal extends Estimate {
     CalendarView calendar;
     TextView textView;
     Spinner mySpinner1;
-    String options [] = {"","Edit Expenses", "Revise Estimate"};
+    String options [] = {"Select an option","Edit Expenses", "Revise Estimate"};
     String dateString = "";
     int dateArray[] = new int[3];
     Point p;
@@ -57,56 +57,8 @@ public class DateCal extends Estimate {
                 buff.append(dayOfMonth+"-"+mahina+"-"+year+"\n");
                 dateString = buff.toString();
                 int res[] = dbref.SearchOneArgRecord(dateString);
-                textView.setText(dateString+"Education: "+res[1]+"\nTransport: "+res[2]+"\nEntertainment: "+res[3]+"\nFood: "+res[4]);
+                textView.setText(dateString+"\nEducation: "+res[1]+"\t\tTransport: "+res[2]+"\n\nEntertainment: "+res[3]+"\t\tFood: "+res[4]);
                 mySpinner1Initiate();
-            }
-        });
-    }
-
-    @Override
-    public void onWindowFocusChanged(boolean hasFocus) {
-
-        //Initialize the Point with x, and y positions
-        p = new Point();
-        p.x = 40;
-        p.y = 40;
-    }
-
-    // The method that displays the popup.
-    private void showPopup(final Activity context, Point p) {
-        int popupWidth = 300;
-        int popupHeight = 400;
-
-        // Inflate the popup_layout.xml
-        LinearLayout viewGroup = (LinearLayout) context.findViewById(R.id.popup);
-        LayoutInflater layoutInflater = (LayoutInflater) context
-                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View layout = layoutInflater.inflate(R.layout.popup_layout, viewGroup);
-
-        // Creating the PopupWindow
-        final PopupWindow popup = new PopupWindow(context);
-        popup.setContentView(layout);
-        popup.setWidth(popupWidth);
-        popup.setHeight(popupHeight);
-        popup.setFocusable(true);
-
-        // Some offset to align the popup a bit to the right, and a bit down, relative to button's position.
-        int OFFSET_X = 30;
-        int OFFSET_Y = 30;
-
-        // Clear the default translucent background
-        popup.setBackgroundDrawable(new BitmapDrawable());
-
-        // Displaying the popup at the specified location, + offsets.
-        popup.showAtLocation(layout, Gravity.NO_GRAVITY, 10, 10);
-
-        // Getting a reference to Close button, and close the popup when clicked.
-        Button close = (Button) layout.findViewById(R.id.close);
-        close.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                popup.dismiss();
             }
         });
     }
